@@ -1,7 +1,7 @@
 [
   {
     "id": "gas",
-    "category": "Refineries",
+    "category": "Oil Refineries",
     "emissions": 16797997,
     "location": {
       "name": "Tesoro Refining & Marketing Company LLC",
@@ -169,7 +169,7 @@
     "news": {
       "headline": "Los Angeles Overhauls Food Production for Climate Change",
       "body": [
-        "Los Angeles has targeted their food production industry to help reach their sustainability goals. As a moderate greenhouse gas contributor, Los Angeles seeks to accelerate their sustainability targets, although the industry-wide uproot seems to outweigh the minor benefits, given the other sources of carbon throughout the city."
+        "Los Angeles has targeted their food production industry to help reach their sustainability goals. As a moderate greenhouse gas contributor, Los Angeles seeks to accelerate their sustainability targets by slashing production. However, the harm of industry-wide uproot seems to outweigh the minor benefits, given the other sources of carbon throughout the city."
       ]
     }
   }

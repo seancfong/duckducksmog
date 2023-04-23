@@ -271,7 +271,7 @@ const MapComponent = ({
               const model1 = gltf.scene;
               model1.name = "airport";
               model1.rotation.x = Math.PI / 2;
-              model1.scale.set(1, 1, 1);
+              model1.scale.set(1.2, 1, 1);
               resolve(model1);
             });
           });
@@ -283,7 +283,7 @@ const MapComponent = ({
               const model1 = gltf.scene;
               model1.name = "uni";
               model1.rotation.x = Math.PI / 2;
-              model1.scale.set(250, 250, 250);
+              model1.scale.set(1000, 1000, 1000);
               resolve(model1);
             });
           });
@@ -295,7 +295,8 @@ const MapComponent = ({
               const model1 = gltf.scene;
               model1.name = "vehicle";
               model1.rotation.x = Math.PI / 2;
-              model1.scale.set(100, 100, 100);
+              model1.rotation.y = Math.PI;
+              model1.scale.set(400, 400, 500);
               resolve(model1);
             });
           });
