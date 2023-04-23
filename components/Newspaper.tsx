@@ -11,9 +11,15 @@ type Props = {
   headline: string;
   bodySections: Array<React.ReactElement>;
   setOverlayStage: React.Dispatch<React.SetStateAction<string>>;
+  numClicked: number;
 };
 
-const Newspaper = ({ headline, bodySections, setOverlayStage }: Props) => {
+const Newspaper = ({
+  headline,
+  bodySections,
+  setOverlayStage,
+  numClicked,
+}: Props) => {
   const [dateString, setDateString] = useState<string>("");
 
   useEffect(() => {
@@ -47,7 +53,7 @@ const Newspaper = ({ headline, bodySections, setOverlayStage }: Props) => {
         {/* newspaper info: 5 col */}
         <div className="col-span-5 flex border-b-4 border-slate-600 justify-between font-semibold text-lg">
           <div className="text-slate-400">
-            California's sustainability report
+            California&apos;s sustainability report
           </div>
           <div className="text-slate-600">{dateString} Issue</div>
         </div>
@@ -69,7 +75,7 @@ const Newspaper = ({ headline, bodySections, setOverlayStage }: Props) => {
           const imgClass = "h-full col-span-2 bg-slate-300 rounded-lg";
 
           return (
-            <>
+            <React.Fragment key={i}>
               {i % 2 == 0 && (
                 <>
                   <div className={sectionClass}>{section}</div>
@@ -84,7 +90,7 @@ const Newspaper = ({ headline, bodySections, setOverlayStage }: Props) => {
                   <div className="col-span-5 h-10"></div>
                 </>
               )}
-            </>
+            </React.Fragment>
           );
         })}
       </motion.div>
@@ -93,7 +99,13 @@ const Newspaper = ({ headline, bodySections, setOverlayStage }: Props) => {
         <button
           className="bg-slate-100 rounded-xl px-10 py-3 text-slate-600 border-4 border-slate-600 text-xl font-medium font-primary"
           onClick={() => {
-            setOverlayStage("");
+            if (numClicked < 3) {
+              console.log(numClicked);
+              setOverlayStage("");
+            } else {
+              console.log("3 picked");
+              setOverlayStage("finish");
+            }
           }}
         >
           Continue

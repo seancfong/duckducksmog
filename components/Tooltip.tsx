@@ -22,7 +22,7 @@ const Tooltip = ({ options }: Props) => {
             exit={{ y: "-150%" }}
             className="relative w-min h-min bg-slate-700 rounded-xl text-white flex flex-col justify-center items-center px-5 py-2 text-center font-primary whitespace-nowrap"
           >
-            <p className="font-light">Create a new policy for</p>
+            <p className="font-light">Sign a policy to clear the smog from</p>
             <h4 className="text-2xl">{options.category}</h4>
           </motion.div>
         </div>

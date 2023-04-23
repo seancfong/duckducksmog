@@ -7,6 +7,7 @@ import { tooltipOptions } from "../Tooltip";
 type Props = {
   setNewsContent: React.Dispatch<React.SetStateAction<newsType>>;
   setOverlayStage: React.Dispatch<React.SetStateAction<string>>;
+  setNumClicked: React.Dispatch<React.SetStateAction<number>>;
   setMouseTooltip: React.Dispatch<React.SetStateAction<tooltipOptions | null>>;
   docRef: React.RefObject<Element>;
 };
@@ -24,6 +25,7 @@ const GoogleMaps = ({
   setNewsContent,
   setOverlayStage,
   setMouseTooltip,
+  setNumClicked,
   docRef,
 }: Props) => {
   const center = { lat: 34.0488, lng: -118.2518 };
@@ -37,6 +39,7 @@ const GoogleMaps = ({
         setNewsContent={setNewsContent}
         setOverlayStage={setOverlayStage}
         setMouseTooltip={setMouseTooltip}
+        setNumClicked={setNumClicked}
         docRef={docRef}
       />
     </Wrapper>

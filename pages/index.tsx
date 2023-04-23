@@ -15,6 +15,7 @@ export default function Home() {
     body: [""],
   });
   const [mouseTooltip, setMouseTooltip] = useState<tooltipOptions | null>(null);
+  const [numClicked, setNumClicked] = useState<number>(0);
 
   const docRef = useRef(null);
   const { docX, docY } = useMouse(docRef);
@@ -29,11 +30,13 @@ export default function Home() {
           setNewsContent={setNewsContent}
           setOverlayStage={setOverlayStage}
           setMouseTooltip={setMouseTooltip}
+          setNumClicked={setNumClicked}
           docRef={docRef}
         />
         <Overlay
           overlayStage={overlayStage}
           setOverlayStage={setOverlayStage}
+          numClicked={numClicked}
           newsContent={newsContent}
         />
         <div

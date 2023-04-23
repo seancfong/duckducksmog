@@ -10,6 +10,7 @@ type Props = {
   zoom: number;
   setNewsContent: React.Dispatch<React.SetStateAction<newsType>>;
   setOverlayStage: React.Dispatch<React.SetStateAction<string>>;
+  setNumClicked: React.Dispatch<React.SetStateAction<number>>;
   setMouseTooltip: React.Dispatch<React.SetStateAction<tooltipOptions | null>>;
   docRef: React.RefObject<Element>;
 };
@@ -33,6 +34,7 @@ const MapComponent = ({
   zoom,
   setNewsContent,
   setOverlayStage,
+  setNumClicked,
   setMouseTooltip,
   docRef,
 }: Props) => {
@@ -73,7 +75,7 @@ const MapComponent = ({
     map.data.loadGeoJson("https://www.gstatic.com/mapsdata/buildings_v1.json");
 
     initWebGLOverlayView(map).then(() => {
-      data.map((entry: locationType) => {
+      data.forEach((entry: locationType) => {
         // console.log(entry.location.address);
 
         const cityCircle = new google.maps.Circle({
@@ -116,6 +118,8 @@ const MapComponent = ({
             });
 
             setOverlayStage("news");
+
+            setNumClicked((num) => num + 1);
           }
         });
 
