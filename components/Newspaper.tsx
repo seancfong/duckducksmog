@@ -2,12 +2,18 @@ import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { BsChevronDoubleDown } from "react-icons/bs";
 
+export interface newsType {
+  headline: string;
+  body: Array<string>;
+}
+
 type Props = {
   headline: string;
   bodySections: Array<React.ReactElement>;
+  setOverlayStage: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const Newspaper = ({ headline, bodySections }: Props) => {
+const Newspaper = ({ headline, bodySections, setOverlayStage }: Props) => {
   const [dateString, setDateString] = useState<string>("");
 
   useEffect(() => {
@@ -17,8 +23,8 @@ const Newspaper = ({ headline, bodySections }: Props) => {
   return (
     <motion.div
       className="w-screen h-screen fixed left-0 top-0 flex flex-col justify-start items-center bg-slate-700 bg-opacity-20 overflow-y-scroll py-32 gray-scrollbar"
-      initial={false}
-      animate={{ y: "0vh" }}
+      initial={{ y: "0vh", opacity: 0 }}
+      animate={{ y: "0vh", opacity: 1 }}
       exit={{ y: "-100vh" }}
       transition={{ type: "spring", damping: 20, stiffness: 100 }}
     >
@@ -29,7 +35,7 @@ const Newspaper = ({ headline, bodySections }: Props) => {
         transition={{
           duration: 1,
           ease: [0.04, 1, 0.29, 0.99],
-          delay: 1.5,
+          delay: 0.5,
         }}
         className="w-[60rem] bg-slate-100 rounded-xl grid grid-cols-5 auto-rows-min p-10 text-slate-600 font-newsreader relative"
       >
@@ -84,8 +90,13 @@ const Newspaper = ({ headline, bodySections }: Props) => {
       </motion.div>
       {/* button to begin */}
       <div className="flex justify-center py-5 col-span-5">
-        <button className="bg-green-500 rounded-xl px-10 py-3 text-white text-xl font-mediumA font-primary">
-          Get Started
+        <button
+          className="bg-slate-100 rounded-xl px-10 py-3 text-slate-600 border-4 border-slate-600 text-xl font-medium font-primary"
+          onClick={() => {
+            setOverlayStage("");
+          }}
+        >
+          Continue
         </button>
       </div>
     </motion.div>

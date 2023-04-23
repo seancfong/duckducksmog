@@ -2,14 +2,15 @@ import { AnimatePresence, motion } from "framer-motion";
 import React, { SetStateAction, useEffect, useState } from "react";
 import { getCurrentDate } from "@/lib/utils/helpers";
 import { BsChevronDoubleDown } from "react-icons/bs";
-import Newspaper from "./Newspaper";
+import Newspaper, { newsType } from "./Newspaper";
 
 type Props = {
   overlayStage: string;
   setOverlayStage: React.Dispatch<SetStateAction<string>>;
+  newsContent: newsType;
 };
 
-const Overlay = ({ overlayStage, setOverlayStage }: Props) => {
+const Overlay = ({ overlayStage, setOverlayStage, newsContent }: Props) => {
   const [dateString, setDateString] = useState<string>("");
 
   useEffect(() => {
@@ -31,20 +32,25 @@ const Overlay = ({ overlayStage, setOverlayStage }: Props) => {
           >
             {/* newspaper div */}
             <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
+              initial={{ scale: 0, rotate: 0, y: -300 }}
+              animate={{ scale: 1, rotate: 360 * 4, y: 0 }}
               transition={{
                 duration: 1,
-                ease: [0.04, 1, 0.29, 0.99],
+                ease: [0.46, 0.02, 0.87, 1.11],
                 delay: 1.5,
               }}
               className="w-[60rem] bg-slate-100 rounded-xl grid grid-cols-5 auto-rows-min p-10 text-slate-600 font-newsreader relative"
             >
               {/* scroll icon */}
-              <div className="absolute w-full flex flex-col items-center text-white -top-16">
+              <motion.div
+                className="absolute w-full flex flex-col items-center text-white -top-16"
+                initial={{ display: "none" }}
+                animate={{ display: "flex" }}
+                transition={{ delay: 3 }}
+              >
                 <BsChevronDoubleDown className="animate-bounce" />
                 <span className="font-primary tracking-wider">Scroll Down</span>
-              </div>
+              </motion.div>
               {/* newspaper info: 5 col */}
               <div className="col-span-5 flex border-b-4 border-slate-600 justify-between font-semibold text-lg">
                 <div className="text-slate-400">
@@ -54,7 +60,9 @@ const Overlay = ({ overlayStage, setOverlayStage }: Props) => {
               </div>
               {/* newspaper title: 5 col */}
               <div className="flex flex-col col-span-5 items-center pt-10 pb-5 border-b-4 border-slate-600">
-                <h2 className="uppercase font-semibold text-8xl">LA Quacks</h2>
+                <h2 className="uppercase font-semibold text-8xl">
+                  L.A. Quacks
+                </h2>
                 <p className="uppercase text-slate-400 text-3xl font-medium">
                   The Unofficial LA Hacks Newspaper
                 </p>
@@ -78,14 +86,16 @@ const Overlay = ({ overlayStage, setOverlayStage }: Props) => {
                   and get re-elected!
                 </p>
               </div>
-              <div className="h-full col-span-2 bg-slate-300 ml-5 rounded-lg" />
+              <div className="h-full col-span-2 bg-slate-300 ml-5 rounded-lg overflow-hidden">
+                <img src="/ducktective.png" alt="" />
+              </div>
             </motion.div>
             {/* button to begin */}
             <div className="flex justify-center py-5 col-span-5">
               <button
-                className="bg-green-500 rounded-xl px-10 py-3 text-white text-xl font-mediumA font-primary"
+                className="bg-slate-100 rounded-xl px-10 py-3 text-slate-600 border-4 border-slate-600 text-xl font-medium font-primary"
                 onClick={() => {
-                  setOverlayStage("game");
+                  setOverlayStage("");
                 }}
               >
                 Get Started
@@ -96,39 +106,33 @@ const Overlay = ({ overlayStage, setOverlayStage }: Props) => {
       </AnimatePresence>
 
       <AnimatePresence>
-        {overlayStage == "game" && (
+        {!overlayStage && (
           // Navbar
           <motion.div
             className="fixed top-3 left-3 pointer-events-none bg-slate-100 px-4 py-1 rounded-lg bg-opacity-60"
             initial={{ y: -300 }}
             animate={{ y: 0 }}
+            exit={{ y: -300 }}
             transition={{ type: "spring", damping: 20, stiffness: 100 }}
           >
             <h1 className="font-primary text-3xl text-slate-600">
-              Smog Papers
+              DuckDuckSmog
             </h1>
           </motion.div>
         )}
       </AnimatePresence>
-      {overlayStage == "news" && (
-        <Newspaper
-          headline="New Policy to Reduce Emissions in Universities"
-          bodySections={[
-            <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt
-              mollitia labore amet assumenda alias quis incidunt, voluptas
-              veritatis eaque facilis dignissimos porro tempore maiores soluta
-              optio voluptatem. Illum, neque voluptate.
-            </p>,
-            <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt
-              mollitia labore amet assumenda alias quis incidunt, voluptas
-              veritatis eaque facilis dignissimos porro tempore maiores soluta
-              optio voluptatem. Illum, neque voluptate.
-            </p>,
-          ]}
-        />
-      )}
+
+      <AnimatePresence>
+        {overlayStage == "news" && (
+          <Newspaper
+            setOverlayStage={setOverlayStage}
+            headline={newsContent?.headline}
+            bodySections={newsContent?.body.map((paragraph: string) => (
+              <p>{paragraph}</p>
+            ))}
+          />
+        )}
+      </AnimatePresence>
     </>
   );
 };

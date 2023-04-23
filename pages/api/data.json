@@ -60,7 +60,10 @@
     },
     "news": {
       "headline": "Healthcare Funding Slashed to Reduce Carbon Emissions",
-      "body": "Thousands of residents no longer have"
+      "body": [
+        "Thousands of residents no longer have access to nearby medical care, leading to overflow and crowding at remaining hospitals within the city. Many local clinics and hospitals have been forced to close their doors, leaving residents with little choice but to travel long distances for medical treatment.",
+        "As the government continues to prioritize reducing carbon emissions, it is crucial that healthcare funding is not overlooked. The health and wellbeing of the population must remain a top priority, even in the face of pressing environmental concerns."
+      ]
     }
   },
   {
@@ -73,6 +76,12 @@
         "lat": 34.642,
         "long": -118.071
       }
+    },
+    "news": {
+      "headline": "",
+      "body": [
+        "Thousands of residents no longer have access to nearby medical care, leading to overflow and crowding at remaining hospitals within the city."
+      ]
     }
   },
   {

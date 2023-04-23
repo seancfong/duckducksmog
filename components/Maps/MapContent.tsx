@@ -1,18 +1,53 @@
 import React, { useEffect, useRef } from "react";
 // import { styledMapType } from "./MapStyles";
+import data from "@/pages/api/data.json";
+import { newsType } from "../Newspaper";
+import Tooltip, { tooltipOptions } from "../Tooltip";
+import { useMouse } from "react-use";
 
 type Props = {
   center: google.maps.LatLngLiteral;
   zoom: number;
+  setNewsContent: React.Dispatch<React.SetStateAction<newsType>>;
+  setOverlayStage: React.Dispatch<React.SetStateAction<string>>;
+  setMouseTooltip: React.Dispatch<React.SetStateAction<tooltipOptions | null>>;
+  docRef: React.RefObject<Element>;
 };
 
-const MapComponent = ({ center, zoom }: Props) => {
+interface locationType {
+  category?: string;
+  emissions?: number;
+  location: {
+    name: string;
+    address: string;
+    coords: {
+      lat: number;
+      long: number;
+    };
+  };
+  news?: newsType;
+}
+
+const MapComponent = ({
+  center,
+  zoom,
+  setNewsContent,
+  setOverlayStage,
+  setMouseTooltip,
+  docRef,
+}: Props) => {
   const ref = useRef(null);
+
+  const { docX, docY } = useMouse(docRef);
+
+  // useEffect(() => {
+  //   console.log(docX, docY);
+  // }, [docX, docY]);
 
   const mapOptions: google.maps.MapOptions = {
     center,
     zoom,
-    // minZoom: zoom,
+    minZoom: zoom - 1,
     tilt: 50,
     disableDefaultUI: true,
     mapId: "58ecad07b2583814",
@@ -33,17 +68,89 @@ const MapComponent = ({ center, zoom }: Props) => {
   useEffect(() => {
     // Init map
     /* @ts-ignore */
-
     const map = new window.google.maps.Map(ref.current, mapOptions);
 
     map.data.loadGeoJson("https://www.gstatic.com/mapsdata/buildings_v1.json");
 
-    // Set the style for the building footprints
-    map.data.setStyle({
-      fillColor: "#b4b4b4",
-      strokeColor: "#ffffff",
-      strokeWeight: 1,
-      visible: true,
+    initWebGLOverlayView(map).then(() => {
+      data.map((entry: locationType) => {
+        // console.log(entry.location.address);
+
+        const cityCircle = new google.maps.Circle({
+          strokeColor: "#FF0000",
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: "#FF0000",
+          fillOpacity: 0.35,
+          map,
+          center: {
+            lat: entry.location.coords.lat,
+            lng: entry.location.coords.long,
+          },
+          radius: 900,
+        });
+
+        cityCircle.addListener("mouseover", () => {
+          // console.log(`${entry.location.name} hover`);
+
+          if (entry.category && entry.location.name) {
+            setMouseTooltip({
+              title: entry.location.name,
+              category: entry.category!,
+              description: "This place is producing too much smog!",
+            });
+          }
+        });
+
+        cityCircle.addListener("mouseout", () => {
+          setMouseTooltip(null);
+        });
+
+        cityCircle.addListener("click", () => {
+          console.log(`${entry.location.name} click`);
+
+          if (entry.news) {
+            setNewsContent({
+              headline: entry.news.headline,
+              body: entry.news.body,
+            });
+
+            setOverlayStage("news");
+          }
+        });
+
+        // // Define the LatLng coordinates for the polygon's path.
+        // const locationCoords = [
+        //   {
+        //     lat: entry.location.coords.lat + 0.003,
+        //     lng: entry.location.coords.long,
+        //   },
+        //   {
+        //     lat: entry.location.coords.lat,
+        //     lng: entry.location.coords.long + 0.003,
+        //   },
+        //   {
+        //     lat: entry.location.coords.lat - 0.003,
+        //     lng: entry.location.coords.long,
+        //   },
+        //   {
+        //     lat: entry.location.coords.lat,
+        //     lng: entry.location.coords.long - 0.003,
+        //   },
+        // ];
+
+        // // Construct the polygon.
+        // const locationPolygon = new google.maps.Polygon({
+        //   paths: locationCoords,
+        //   strokeColor: "#FF0000",
+        //   strokeOpacity: 0.8,
+        //   strokeWeight: 2,
+        //   fillColor: "#FF0000",
+        //   fillOpacity: 0.35,
+        // });
+
+        // locationPolygon.setMap(map);
+      });
     });
 
     // //  Init styles
@@ -53,8 +160,6 @@ const MapComponent = ({ center, zoom }: Props) => {
 
     // map.mapTypes.set("styled_map", styles);
     // map.setMapTypeId("styled_map");
-
-    initWebGLOverlayView(map);
   }, []);
 
   return <div ref={ref} id="map" className={"w-full h-full"} />;
