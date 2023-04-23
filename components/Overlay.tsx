@@ -139,14 +139,14 @@ const Overlay = ({
               </h1>
             </motion.div>
             <motion.div
-              className="fixed top-3 right-3 pointer-events-none bg-slate-100 px-4 py-1 rounded-lg bg-opacity-60"
+              className="fixed top-3 right-3 pointer-events-none bg-slate-100 px-4 py-1 rounded-lg bg-opacity-60 shadow-[#22d2d4] shadow-[0px_0px_24px_1px]"
               initial={{ y: -300 }}
               animate={{ y: 0 }}
               exit={{ y: -300 }}
               transition={{ type: "spring", damping: 20, stiffness: 100 }}
             >
               <div className="font-primary text-6xl text-slate-600 flex flex-col items-center justify-center">
-                <span className="text-red-500">{3 - numClicked.length}</span>
+                <span className="text-[#22d2d4]">{3 - numClicked.length}</span>
                 <p className="text-lg leading-5">
                   choices <br /> remain
                 </p>

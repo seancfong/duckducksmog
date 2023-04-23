@@ -28,7 +28,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>LA Quacks</title>
+        <title>DuckDuckSmog</title>
       </Head>
       <main className="w-screen h-screen relative overflow-hidden" ref={docRef}>
         <GoogleMaps

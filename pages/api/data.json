@@ -1,5 +1,6 @@
 [
   {
+    "id": "gas",
     "category": "Refineries",
     "emissions": 16797997,
     "location": {
@@ -18,6 +19,7 @@
     }
   },
   {
+    "id": "plant",
     "category": "Power Plants",
     "emissions": 5365993,
     "location": {
@@ -36,6 +38,7 @@
     }
   },
   {
+    "id": "uni",
     "category": "Universities",
     "emissions": 312294,
     "location": {
@@ -56,6 +59,7 @@
     }
   },
   {
+    "id": "waste",
     "category": "Landfills and Waste Processing",
     "emissions": 381663,
     "location": {
@@ -74,6 +78,7 @@
     }
   },
   {
+    "id": "hospital",
     "category": "Hospitals",
     "emissions": 102412,
     "location": {
@@ -93,6 +98,7 @@
     }
   },
   {
+    "id": "factory",
     "category": "Factories",
     "emissions": 32488,
     "location": {
@@ -111,6 +117,7 @@
     }
   },
   {
+    "id": "airport",
     "category": "Airport Operations",
     "emissions": 23963,
     "location": {
@@ -129,6 +136,7 @@
     }
   },
   {
+    "id": "vehicle",
     "category": "Vehicle Emissions",
     "emissions": 41682227,
     "location": {
@@ -147,6 +155,7 @@
     }
   },
   {
+    "id": "food",
     "category": "Restaurants and Food Processing",
     "emissions": 116909,
     "location": {
