@@ -10,7 +10,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        primary: ["var(--inter-font)", ...fontFamily.sans],
+        primary: ["var(--lexend-deca-font)", ...fontFamily.sans],
         newsreader: ["var(--newsreader-font)", ...fontFamily.sans],
         serif: ["var(--inter-font)", ...fontFamily.serif],
       },

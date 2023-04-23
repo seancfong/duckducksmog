@@ -4,7 +4,7 @@
 
 @layer utilities {
   .gray-scrollbar::-webkit-scrollbar {
-    width: 12px;
+    width: 10px;
     height: 10px;
   }
 
@@ -38,5 +38,5 @@
 
 :root {
   --section-track-scrollbar: rgba(0, 0, 0, 0);
-  --section-thumb-scrollbar: #bcbcbc;
+  --section-thumb-scrollbar: #777777;
 }

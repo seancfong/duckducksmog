@@ -1,9 +1,12 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 
-import { Inter, Newsreader } from "next/font/google";
+import { Lexend_Deca, Newsreader } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const lexendDeca = Lexend_Deca({
+  weight: ["300", "400", "700"],
+  subsets: ["latin"],
+});
 const newsreader = Newsreader({ subsets: ["latin"] });
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -12,7 +15,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <style jsx global>
         {`
           :root {
-            --inter-font: ${inter.style.fontFamily};
+            --lexend-deca-font: ${lexendDeca.style.fontFamily};
             --newsreader-font: ${newsreader.style.fontFamily};
           }
         `}

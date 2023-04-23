@@ -1,0 +1,114 @@
+[
+  {
+    "category": "Refineries",
+    "emissions": 16797997,
+    "location": {
+      "name": "Tesoro Refining & Marketing Company LLC",
+      "address": "Carson One Campus, 2530 E. 223rd street , Carson, CA 90810",
+      "coords": {
+        "lat": 33.824,
+        "long": -118.233
+      }
+    }
+  },
+  {
+    "category": "Power Plants",
+    "emissions": 5365993,
+    "location": {
+      "name": "AES Redondo Beach",
+      "address": "1100 North Harbor Drive , Redondo Beach, CA 90277",
+      "coords": {
+        "lat": 33.85,
+        "long": -118.393
+      }
+    }
+  },
+  {
+    "category": "Universities",
+    "emissions": 312294,
+    "location": {
+      "name": "University of California, Los Angeles",
+      "address": "405 Hilgard Ave. , Los Angeles, CA 90095",
+      "coords": {
+        "lat": 34.071,
+        "long": -118.445
+      }
+    }
+  },
+  {
+    "category": "Landfills and Waste Processing",
+    "emissions": 381663,
+    "location": {
+      "name": "Puente Hills Landfill",
+      "address": "13130 Crossroads Parkway , City of Industry, CA 90607",
+      "coords": {
+        "lat": 34.028,
+        "long": -118.017
+      }
+    }
+  },
+  {
+    "category": "Hospitals",
+    "emissions": 102412,
+    "location": {
+      "name": "Cedars-Sinai Medical Center",
+      "address": "8700 Beverly Blvd. , Los Angeles, CA 90048",
+      "coords": {
+        "lat": 34.075,
+        "long": -118.38
+      }
+    },
+    "news": {
+      "headline": "Healthcare Funding Slashed to Reduce Carbon Emissions",
+      "body": "Thousands of residents no longer have"
+    }
+  },
+  {
+    "category": "Factories",
+    "emissions": 32488,
+    "location": {
+      "name": "Northrop Grumman",
+      "address": "3520 E Avenue M , Palmdale, CA 93550",
+      "coords": {
+        "lat": 34.642,
+        "long": -118.071
+      }
+    }
+  },
+  {
+    "category": "Airport Operations",
+    "emissions": 23963,
+    "location": {
+      "name": "Los Angeles International Airport",
+      "address": "275 Center Way , Los Angeles, CA 90045",
+      "coords": {
+        "lat": 33.944,
+        "long": -118.405
+      }
+    }
+  },
+  {
+    "category": "Vehicle Emissions",
+    "emissions": 41682227,
+    "location": {
+      "name": "101 & I-405 Interchange",
+      "address": "101 El Camino Real, Sherman Oaks, Los Angeles, CA",
+      "coords": {
+        "lat": 34.160231,
+        "long": -118.469495
+      }
+    }
+  },
+  {
+    "category": "Restaurants and Food Processing",
+    "emissions": 116909,
+    "location": {
+      "name": "Clougherty Packing, LLC",
+      "address": "3049 E Vernon Ave , Vernon, CA 90058",
+      "coords": {
+        "lat": 34.005,
+        "long": -118.219
+      }
+    }
+  }
+]
