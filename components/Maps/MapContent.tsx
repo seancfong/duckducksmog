@@ -18,6 +18,7 @@ type Props = {
   setOverlayStage: React.Dispatch<React.SetStateAction<string>>;
   setNumClicked: React.Dispatch<React.SetStateAction<Array<clickType>>>;
   setMouseTooltip: React.Dispatch<React.SetStateAction<tooltipOptions | null>>;
+  numClicked: Array<clickType>;
   docRef: React.RefObject<Element>;
 };
 
@@ -42,6 +43,7 @@ const MapComponent = ({
   setOverlayStage,
   setNumClicked,
   setMouseTooltip,
+  numClicked,
   docRef,
 }: Props) => {
   const ref = useRef(null);
@@ -79,7 +81,6 @@ const MapComponent = ({
       // @ts-ignore
       camera: { projectionMatrix: any },
       // @ts-ignore
-      mixer: THREE.AnimationMixer,
       loader: {
         load: (
           arg0: string,
@@ -96,8 +97,7 @@ const MapComponent = ({
             (gltf: any): void;
           }
         ) => void;
-      },
-      action;
+      };
     const webGLOverlayView = new google.maps.WebGLOverlayView();
     function loadModels(id: any) {
       switch (id) {
@@ -109,7 +109,6 @@ const MapComponent = ({
               model1.name = "cloud";
               model1.scale.set(10, 10, 10);
               model1.rotation.x = Math.PI / 2;
-              console.log("inside cloud");
               model1.traverse((object: any) => {
                 if (object.material) {
                   object.material.opacity = 0.5;
@@ -117,89 +116,6 @@ const MapComponent = ({
                 }
               });
 
-              const clip = new THREE.AnimationClip("CloudAnimation", 20, [
-                // Define a keyframe track for the cloud's position
-                new THREE.VectorKeyframeTrack(
-                  ".position",
-                  [
-                    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
-                    17, 18, 19, 20,
-                  ],
-                  [
-                    0,
-                    0,
-                    250, // x,y,z coordinates for time 0
-                    0.5,
-                    1.5,
-                    250, // x,y,z coordinates for time 1
-                    1,
-                    2,
-                    250.5, // x,y,z coordinates for time 2
-                    0.5,
-                    2.5,
-                    250.5, // x,y,z coordinates for time 3
-                    -0.5,
-                    2.5,
-                    250.5, // x,y,z coordinates for time 4
-                    -1,
-                    2,
-                    250.5, // x,y,z coordinates for time 5
-                    -1,
-                    2,
-                    250, // x,y,z coordinates for time 6
-                    -1,
-                    2,
-                    249.5, // x,y,z coordinates for time 7
-                    -0.5,
-                    2.5,
-                    249.5, // x,y,z coordinates for time 8
-                    0.5,
-                    2.5,
-                    249.5, // x,y,z coordinates for time 9
-                    1,
-                    2,
-                    249.5, // x,y,z coordinates for time 10
-                    0.5,
-                    1.5,
-                    250, // x,y,z coordinates for time 11
-                    1,
-                    2,
-                    250.5, // x,y,z coordinates for time 12
-                    0.5,
-                    2.5,
-                    250.5, // x,y,z coordinates for time 13
-                    -0.5,
-                    2.5,
-                    250.5, // x,y,z coordinates for time 14
-                    -1,
-                    2,
-                    250.5, // x,y,z coordinates for time 15
-                    -1,
-                    2,
-                    250, // x,y,z coordinates for time 16
-                    -1,
-                    2,
-                    249.5, // x,y,z coordinates for time 17
-                    -0.5,
-                    2.5,
-                    249.5, // x,y,z coordinates for time 18
-                    0.5,
-                    2.5,
-                    249.5, // x,y,z coordinates for time 19
-                    0,
-                    0,
-                    250, // x,y,z coordinates for time 20 (matching the starting position)
-                  ]
-                ),
-              ]);
-
-              // Create a new animation mixer and add the clip to it
-              mixer = new THREE.AnimationMixer(model1);
-              action = mixer.clipAction(clip);
-
-              // Set the animation to loop and start playing it
-              action.loop = THREE.LoopRepeat;
-              action.play();
               resolve(model1);
             });
           });
@@ -423,10 +339,6 @@ const MapComponent = ({
       // Request a redraw and render the scene.
       webGLOverlayView.requestRedraw();
       renderer.render(scene, camera);
-      if (mixer) {
-        const deltaTime = 1 / 60; // assuming 60 fps
-        mixer.update(deltaTime);
-      }
 
       // Always reset the GL state.
       renderer.resetState();
@@ -480,6 +392,8 @@ const MapComponent = ({
       cityCircle.addListener("click", () => {
         console.log(`${entry.location.name} click`);
 
+        console.log(numClicked);
+
         if (entry.news) {
           setNewsContent({
             headline: entry.news.headline,
@@ -491,8 +405,12 @@ const MapComponent = ({
           let newClick: clickType = {
             category: entry.category!,
             emissions: entry.emissions!,
+            circle: cityCircle,
+            map: map,
           };
           setNumClicked((num) => [...num, newClick]);
+          cityCircle.setMap(null);
+          setMouseTooltip(null);
         }
       });
 

@@ -11,6 +11,7 @@ type Props = {
   setNumClicked: React.Dispatch<React.SetStateAction<Array<clickType>>>;
   setMouseTooltip: React.Dispatch<React.SetStateAction<tooltipOptions | null>>;
   docRef: React.RefObject<Element>;
+  numClicked: Array<clickType>;
 };
 
 let mapsKey = process.env["NEXT_PUBLIC_GOOGLE_MAPS_KEY"];
@@ -27,6 +28,7 @@ const GoogleMaps = ({
   setOverlayStage,
   setMouseTooltip,
   setNumClicked,
+  numClicked,
   docRef,
 }: Props) => {
   const center = { lat: 34.0488, lng: -118.2518 };
@@ -41,6 +43,7 @@ const GoogleMaps = ({
         setOverlayStage={setOverlayStage}
         setMouseTooltip={setMouseTooltip}
         setNumClicked={setNumClicked}
+        numClicked={numClicked}
         docRef={docRef}
       />
     </Wrapper>

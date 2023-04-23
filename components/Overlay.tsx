@@ -261,6 +261,10 @@ const Overlay = ({
               <button
                 className="bg-slate-100 rounded-xl px-10 py-3 text-slate-600 border-4 border-slate-600 text-xl font-medium font-primary"
                 onClick={() => {
+                  numClicked.forEach((click: clickType) => {
+                    console.log(click.circle, click.map);
+                    click.circle.setMap(click.map);
+                  });
                   setNumClicked([]);
                   setOverlayStage("intro");
                 }}

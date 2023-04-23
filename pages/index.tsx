@@ -11,6 +11,8 @@ import { AnimatePresence } from "framer-motion";
 export type clickType = {
   category: string;
   emissions: number;
+  circle: any;
+  map: any;
 };
 
 export default function Home() {
@@ -36,6 +38,7 @@ export default function Home() {
           setOverlayStage={setOverlayStage}
           setMouseTooltip={setMouseTooltip}
           setNumClicked={setNumClicked}
+          numClicked={numClicked}
           docRef={docRef}
         />
         <Overlay
