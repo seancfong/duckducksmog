@@ -11,6 +11,7 @@ module.exports = {
     extend: {
       fontFamily: {
         primary: ["var(--inter-font)", ...fontFamily.sans],
+        newsreader: ["var(--newsreader-font)", ...fontFamily.sans],
         serif: ["var(--inter-font)", ...fontFamily.serif],
       },
     },

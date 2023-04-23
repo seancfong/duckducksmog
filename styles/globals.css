@@ -1,3 +1,42 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .gray-scrollbar::-webkit-scrollbar {
+    width: 12px;
+    height: 10px;
+  }
+
+  /* Section scrollbar */
+  .gray-scrollbar::-webkit-scrollbar-track {
+    background: var(--section-track-scrollbar);
+  }
+
+  .gray-scrollbar::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 10px 10px var(--section-thumb-scrollbar);
+    border: solid 3px transparent;
+    border-radius: 10px;
+  }
+
+  .gray-scrollbar::-webkit-scrollbar-thumb:hover {
+    box-shadow: inset 0 0 10px 10px var(--section-thumb-scrollbar);
+    border: solid 2px transparent;
+    border-radius: 10px;
+  }
+
+  .gray-scrollbar::-webkit-scrollbar-track-piece:start {
+    background: transparent;
+    margin-top: 0.5rem;
+  }
+
+  .gray-scrollbar::-webkit-scrollbar-track-piece:end {
+    background: transparent;
+    margin-bottom: 0.5rem;
+  }
+}
+
+:root {
+  --section-track-scrollbar: rgba(0, 0, 0, 0);
+  --section-thumb-scrollbar: #bcbcbc;
+}

@@ -15,7 +15,7 @@ const render = (status: Status): ReactElement => {
 
 const GoogleMaps = (props: Props) => {
   const center = { lat: 34.0488, lng: -118.2518 };
-  const zoom = 15;
+  const zoom = 17;
 
   return (
     <Wrapper apiKey={mapsKey ?? ""} render={render}>
