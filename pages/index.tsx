@@ -8,6 +8,11 @@ import { useMouse } from "react-use";
 import Tooltip, { tooltipOptions } from "@/components/Tooltip";
 import { AnimatePresence } from "framer-motion";
 
+export type clickType = {
+  category: string;
+  emissions: number;
+};
+
 export default function Home() {
   const [overlayStage, setOverlayStage] = useState<string>("intro");
   const [newsContent, setNewsContent] = useState<newsType>({
@@ -15,7 +20,7 @@ export default function Home() {
     body: [""],
   });
   const [mouseTooltip, setMouseTooltip] = useState<tooltipOptions | null>(null);
-  const [numClicked, setNumClicked] = useState<number>(0);
+  const [numClicked, setNumClicked] = useState<Array<clickType>>([]);
 
   const docRef = useRef(null);
   const { docX, docY } = useMouse(docRef);
@@ -37,6 +42,7 @@ export default function Home() {
           overlayStage={overlayStage}
           setOverlayStage={setOverlayStage}
           numClicked={numClicked}
+          setNumClicked={setNumClicked}
           newsContent={newsContent}
         />
         <div

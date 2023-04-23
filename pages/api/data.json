@@ -49,8 +49,7 @@
     "news": {
       "headline": "Los Angeles Attempts to Reduce Carbon Emissions in Universities with New Policy",
       "body": [
-        "The city of Los Angeles has taken a major step towards combating climate change by passing a new policy aimed at reducing carbon emissions in universities. The policy is part of a broader effort to promote sustainability and reduce the city's carbon footprint. Under the new policy, universities in Los Angeles will be required to develop plans to reduce their carbon emissions and promote sustainable practices on their campuses. The policy includes a range of measures, such as increasing the use of renewable energy, reducing waste, and promoting sustainable transportation options.",
-        "The policy is expected to have significant benefits for the environment, as universities are major sources of greenhouse gas emissions. By reducing their carbon footprint, universities in   Los Angeles will be contributing to the city's broader efforts to combat climate change and create a more sustainable future.",
+        "Under the new policy, universities in Los Angeles will be required to develop plans to reduce their carbon emissions and promote sustainable practices on their campuses. The policy includes a range of measures, such as increasing the use of renewable energy, reducing waste, and promoting sustainable transportation options.",
         "However, the policy has also faced criticism from some quarters, particularly those concerned about the potential costs and administrative burden of implementing the new measures. City officials have acknowledged these concerns but argue that the long-term benefits of reducing carbon emissions and protecting the environment far outweigh any short-term costs.",
         "As cities around the world grapple with the urgent need to address climate change, the new policy in Los Angeles is seen as a bold and necessary step towards a more sustainable future. By promoting sustainable practices in universities, the city is not only reducing its carbon footprint but also preparing future generations to tackle the challenges of climate change."
       ]
@@ -100,8 +99,8 @@
       "name": "Northrop Grumman",
       "address": "3520 E Avenue M , Palmdale, CA 93550",
       "coords": {
-        "lat": 34.642,
-        "long": -118.071
+        "lat": 33.78,
+        "long": -118.218
       }
     },
     "news": {

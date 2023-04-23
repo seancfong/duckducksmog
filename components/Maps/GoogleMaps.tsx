@@ -3,11 +3,12 @@ import React, { ReactElement, useEffect } from "react";
 import MapComponent from "./MapContent";
 import { newsType } from "../Newspaper";
 import { tooltipOptions } from "../Tooltip";
+import { clickType } from "@/pages";
 
 type Props = {
   setNewsContent: React.Dispatch<React.SetStateAction<newsType>>;
   setOverlayStage: React.Dispatch<React.SetStateAction<string>>;
-  setNumClicked: React.Dispatch<React.SetStateAction<number>>;
+  setNumClicked: React.Dispatch<React.SetStateAction<Array<clickType>>>;
   setMouseTooltip: React.Dispatch<React.SetStateAction<tooltipOptions | null>>;
   docRef: React.RefObject<Element>;
 };

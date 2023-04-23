@@ -3,12 +3,14 @@ import React, { SetStateAction, useEffect, useState } from "react";
 import { getCurrentDate } from "@/lib/utils/helpers";
 import { BsChevronDoubleDown } from "react-icons/bs";
 import Newspaper, { newsType } from "./Newspaper";
+import { clickType } from "@/pages";
 
 type Props = {
   overlayStage: string;
   setOverlayStage: React.Dispatch<SetStateAction<string>>;
   newsContent: newsType;
-  numClicked: number;
+  numClicked: Array<clickType>;
+  setNumClicked: React.Dispatch<SetStateAction<Array<clickType>>>;
 };
 
 const Overlay = ({
@@ -16,6 +18,7 @@ const Overlay = ({
   setOverlayStage,
   newsContent,
   numClicked,
+  setNumClicked,
 }: Props) => {
   const [dateString, setDateString] = useState<string>("");
 
@@ -89,12 +92,21 @@ const Overlay = ({
                 <p className="font-semibold">Your goal:</p>
                 <p>
                   Implement the best sustainability policies during your term
-                  and get re-elected!
+                  and get re-elected. However, beware of the consequences!
                 </p>
               </div>
               <div className="h-full col-span-2 bg-slate-300 ml-5 rounded-lg overflow-hidden">
                 <img src="/ducktective.png" alt="" />
               </div>
+              {/* <div className="h-full col-span-2 bg-slate-300 mr-5 rounded-lg overflow-hidden" />
+              <div className="text-2xl col-span-3 flex flex-col gap-5">
+                <p className="font-semibold mt-5">How to play:</p>
+                <p className="mb-5">
+                  Drag and move around the map to view areas of high pollution.
+                  Click on a location to sign a bill to remove the smog from
+                  there. Beware of the consequences!
+                </p>
+              </div> */}
             </motion.div>
             {/* button to begin */}
             <div className="flex justify-center py-5 col-span-5">
@@ -114,17 +126,33 @@ const Overlay = ({
       <AnimatePresence>
         {!overlayStage && (
           // Navbar
-          <motion.div
-            className="fixed top-3 left-3 pointer-events-none bg-slate-100 px-4 py-1 rounded-lg bg-opacity-60"
-            initial={{ y: -300 }}
-            animate={{ y: 0 }}
-            exit={{ y: -300 }}
-            transition={{ type: "spring", damping: 20, stiffness: 100 }}
-          >
-            <h1 className="font-primary text-3xl text-slate-600">
-              DuckDuckSmog
-            </h1>
-          </motion.div>
+          <>
+            <motion.div
+              className="fixed top-3 left-3 pointer-events-none bg-slate-100 px-4 py-1 rounded-lg bg-opacity-60"
+              initial={{ y: -300 }}
+              animate={{ y: 0 }}
+              exit={{ y: -300 }}
+              transition={{ type: "spring", damping: 20, stiffness: 100 }}
+            >
+              <h1 className="font-primary text-3xl text-slate-600">
+                DuckDuckSmog
+              </h1>
+            </motion.div>
+            <motion.div
+              className="fixed top-3 right-3 pointer-events-none bg-slate-100 px-4 py-1 rounded-lg bg-opacity-60"
+              initial={{ y: -300 }}
+              animate={{ y: 0 }}
+              exit={{ y: -300 }}
+              transition={{ type: "spring", damping: 20, stiffness: 100 }}
+            >
+              <div className="font-primary text-6xl text-slate-600 flex flex-col items-center justify-center">
+                <span className="text-red-500">{3 - numClicked.length}</span>
+                <p className="text-lg leading-5">
+                  choices <br /> remain
+                </p>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
 
@@ -154,12 +182,12 @@ const Overlay = ({
           >
             {/* newspaper div */}
             <motion.div
-              initial={{ scale: 0, rotate: 0, y: -300 }}
-              animate={{ scale: 1, rotate: 360 * 4, y: 0 }}
+              initial={{ scale: 0, y: -800 }}
+              animate={{ scale: 1, y: 0 }}
               transition={{
                 duration: 1,
-                ease: [0.46, 0.02, 0.87, 1.11],
-                delay: 1.5,
+                ease: "easeInOut",
+                delay: 0.5,
               }}
               className="w-[60rem] bg-slate-100 rounded-xl grid grid-cols-5 auto-rows-min p-10 text-slate-600 font-newsreader relative"
             >
@@ -183,7 +211,7 @@ const Overlay = ({
               {/* newspaper title: 5 col */}
               <div className="flex flex-col col-span-5 items-center pt-10 pb-5 border-b-4 border-slate-600">
                 <h2 className="uppercase font-semibold text-8xl">
-                  L.A. Quacks
+                  Your Results
                 </h2>
                 <p className="uppercase text-slate-400 text-3xl font-medium">
                   The Unofficial LA Hacks Newspaper
@@ -192,21 +220,37 @@ const Overlay = ({
               {/* newspaper headline: 5 col */}
               <div className="pt-10 col-span-5 pb-5">
                 <h3 className="text-5xl font-medium">
-                  Election Results Are Out!
+                  Emissions greatly reduced in the city of Los Angeles
                 </h3>
               </div>
               {/* newspaper body: 3 + 2 col */}
               <div className="text-2xl col-span-3 flex flex-col gap-5">
                 <p>
-                  As the newly elected Chief Sustainability Officer of Los
-                  Angeles, you must tackle 3 sustainability projects during your
-                  term, balancing effectiveness with cost.
+                  Congratulations on signing your policies! The following data
+                  summarizes the effectiveness of the policies you implemented
+                  in your term:
                 </p>
-                <p className="font-semibold">Your goal:</p>
-                <p>
-                  Implement the best sustainability policies during your term
-                  and get re-elected!
-                </p>
+                <p className="font-semibold">{numClicked.at(0)?.category}:</p>
+                <ul>
+                  <li>
+                    Total Yearly Emissions:{" "}
+                    {numClicked.at(0)?.emissions.toLocaleString()}
+                  </li>
+                </ul>
+                <p className="font-semibold">{numClicked.at(1)?.category}:</p>
+                <ul>
+                  <li>
+                    Total Yearly Emissions:{" "}
+                    {numClicked.at(1)?.emissions.toLocaleString()}
+                  </li>
+                </ul>
+                <p className="font-semibold">{numClicked.at(2)?.category}:</p>
+                <ul>
+                  <li>
+                    Total Yearly Emissions:{" "}
+                    {numClicked.at(2)?.emissions.toLocaleString()}
+                  </li>
+                </ul>
               </div>
               <div className="h-full col-span-2 bg-slate-300 ml-5 rounded-lg overflow-hidden">
                 <img src="/ducktective.png" alt="" />
@@ -217,10 +261,11 @@ const Overlay = ({
               <button
                 className="bg-slate-100 rounded-xl px-10 py-3 text-slate-600 border-4 border-slate-600 text-xl font-medium font-primary"
                 onClick={() => {
-                  setOverlayStage("");
+                  setNumClicked([]);
+                  setOverlayStage("intro");
                 }}
               >
-                Get Started
+                Play again
               </button>
             </div>
           </motion.div>

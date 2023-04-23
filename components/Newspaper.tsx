@@ -1,3 +1,4 @@
+import { clickType } from "@/pages";
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { BsChevronDoubleDown } from "react-icons/bs";
@@ -11,7 +12,7 @@ type Props = {
   headline: string;
   bodySections: Array<React.ReactElement>;
   setOverlayStage: React.Dispatch<React.SetStateAction<string>>;
-  numClicked: number;
+  numClicked: Array<clickType>;
 };
 
 const Newspaper = ({
@@ -99,7 +100,7 @@ const Newspaper = ({
         <button
           className="bg-slate-100 rounded-xl px-10 py-3 text-slate-600 border-4 border-slate-600 text-xl font-medium font-primary"
           onClick={() => {
-            if (numClicked < 3) {
+            if (numClicked.length < 3) {
               console.log(numClicked);
               setOverlayStage("");
             } else {

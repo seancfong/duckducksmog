@@ -4,13 +4,14 @@ import data from "@/pages/api/data.json";
 import { newsType } from "../Newspaper";
 import Tooltip, { tooltipOptions } from "../Tooltip";
 import { useMouse } from "react-use";
+import { clickType } from "@/pages";
 
 type Props = {
   center: google.maps.LatLngLiteral;
   zoom: number;
   setNewsContent: React.Dispatch<React.SetStateAction<newsType>>;
   setOverlayStage: React.Dispatch<React.SetStateAction<string>>;
-  setNumClicked: React.Dispatch<React.SetStateAction<number>>;
+  setNumClicked: React.Dispatch<React.SetStateAction<Array<clickType>>>;
   setMouseTooltip: React.Dispatch<React.SetStateAction<tooltipOptions | null>>;
   docRef: React.RefObject<Element>;
 };
@@ -119,7 +120,11 @@ const MapComponent = ({
 
             setOverlayStage("news");
 
-            setNumClicked((num) => num + 1);
+            let newClick: clickType = {
+              category: entry.category!,
+              emissions: entry.emissions!,
+            };
+            setNumClicked((num) => [...num, newClick]);
           }
         });
 
