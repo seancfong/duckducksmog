@@ -1,38 +1,23 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## [LAHacks 2023 Devpost Link](https://devpost.com/software/duckducksmog)
 
-## Getting Started
+## Inspiration
+Every day, the news is flooded with concerns about climate change, throwing blame to new issues, touting hot new ways to reduce your own carbon footprint, and providing half-baked ideas on how to solve it without considering the consequences. It's easy to drown under the constant waves of noise and lose the ability to recognize good ideas from bad. Every sustainability solution has already been mentioned to the point of saturation, and it can be hard to measure one solution against another and see what answers really matter.
 
-First, run the development server:
+## What it does
+DuckDuckSmog solves this problem by placing the user in the shoes of someone with real power: a city councilperson. Users can try their hand at solving LA's carbon footprint themselves, by simulating a possible solution and seeing the consequences live in the news, using real Greenhouse Gas Emission data.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+Users are given choices of what sectors of LA's economy to target for sustainability solutions, and can try to maximize their carbon footprint reduction in a limited number of actions. Each time a choice is made, they can see how their actions affect the city socially and economically.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## How we built it
+DuckDuckSmog is a web-app running on Next.js, with an interactive 3d environment created using the Google Maps API and Three.js.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Data for carbon footprints was pulled from various peer-reviewed studies on carbon emissions in LA as well as state government data from CARB, South Coast and Antelope Valley Air Quality Management Districts. All 3D models used are freely licensed to students.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Challenges we ran into
+The largest challenge we faced was geolocating the models into their respective landmark zones. Working with 3D models and integrating them with geolocations in a web environment is not a forgiving task. This required a significant amount of math to align coordinate data with locations within the browser's 3D WebGL environment, using matrix transformations and trigonometry.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Accomplishments that we're proud of
+We are proud of the atmosphere we created in our webapp through our artistic choices, in visual style, writing, and UI design. We were also proud of creating an interactive 3D experience within the limited environment of a browser.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## What we learned
+We learned how hard it is to work with 3d models within a geographical environment.
